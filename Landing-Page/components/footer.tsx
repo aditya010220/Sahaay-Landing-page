@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function Footer() {
   return (
     <footer className="bg-slate-900 text-white py-16 relative overflow-hidden">
@@ -6,9 +8,14 @@ export function Footer() {
           {/* Logo & Quote */}
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg flex items-center justify-center">
-                {/* <span className="text-white text-sm">🌿</span> */}
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Sahaay Logo"
+                width={56}
+                height={56}
+                className="w-14 h-14 object-contain rounded-full"
+                priority
+              />
               <span className="text-2xl font-serif">Sahaay</span>
             </div>
             <p className="text-slate-300 text-lg italic leading-relaxed mb-8">

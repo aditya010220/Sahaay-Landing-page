@@ -1,161 +1,162 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, Heart, Star, BookOpen, Link } from "lucide-react"
+import Image from "next/image"
+import { ArrowRight, Star,Sparkles } from "lucide-react"
 
 export function StoriesSection() {
   const stories = [
     {
-      quote:
-        "This space helped me when I felt I couldn't speak to anyone. The AI support was there at 2 AM when my anxiety peaked.",
+      quote: "This space helped me when I felt I couldn't speak to anyone. The AI support was there at 2 AM when my anxiety peaked.",
       name: "Arjun",
       role: "Computer Science Student",
-      category: "RELIEF",
-      icon: "💡",
+      image: "https://i.pinimg.com/1200x/7b/00/6b/7b006b81162b0fe19cfca38feb1c9bd0.jpg",
+      bgColor: "bg-sky-200",
+      shape: "rounded-3xl",
+      badge: "💡",
     },
     {
-      quote:
-        "Counselling felt safe for the first time. I could book sessions without anyone knowing, and that privacy gave me courage.",
-      name: "Priya",
+      quote: "Counselling felt safe for the first time. I could book sessions without anyone knowing, and that privacy gave me courage.",
+      name: "Astha",
       role: "Psychology Student",
-      category: "GROWTH",
-      icon: "🌱",
+      image: "https://i.pinimg.com/736x/f9/e3/cd/f9e3cd2175f691ed060f470c0b2d1c3c.jpg",
+      bgColor: "bg-orange-200",
+      shape: "rounded-full",
+      showBadge: true,
     },
     {
-      quote:
-        "I found my voice and learned to ask for help. The peer support showed me I wasn't the only one struggling.",
+      quote: "I found my voice and learned to ask for help. The peer support showed me I wasn't the only one struggling.",
       name: "Rahul",
       role: "Engineering Student",
-      category: "CONNECTION",
-      icon: "🤝",
+      image: "https://i.pinimg.com/1200x/f8/e3/29/f8e3293e7b037d4ae607c49468e65e46.jpg",
+      bgColor: "bg-emerald-200",
+      shape: "rounded-full",
+      badge: "🤝",
     },
     {
-      quote:
-        "The resource hub became my daily companion. Meditation guides and coping strategies helped me through exam stress.",
+      quote: "The resource hub became my daily companion. Meditation guides and coping strategies helped me through exam stress.",
       name: "Sneha",
       role: "Medical Student",
-      category: "WELLNESS",
-      icon: "🧘‍♀️",
+      image: "https://i.pinimg.com/736x/a4/74/8f/a4748f6181d9ac767f64835b535880e8.jpg",
+      bgColor: "bg-orange-300",
+      shape: "rounded-3xl",
+      decorative: true,
+      badge: "🧘‍♀️",
     },
   ]
 
-  const [currentStory, setCurrentStory] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentStory((prev) => (prev + 1) % stories.length)
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const nextStory = () => {
-    setCurrentStory((prev) => (prev + 1) % stories.length)
-  }
-
-  const prevStory = () => {
-    setCurrentStory((prev) => (prev - 1 + stories.length) % stories.length)
-  }
-
   return (
-    <section id="stories" className="py-20 bg-gradient-to-b from-emerald-50 to-teal-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="stories" className="py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl" />
+        {/* Small decorative stars */}
+        <div className="absolute top-32 left-1/4 text-2xl">✦</div>
+        <div className="absolute top-40 right-1/3 text-xl">→</div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-emerald-900 mb-6 text-balance">You're Not Alone</h2>
-          <p className="text-xl text-emerald-600">Real stories from students who found their path to wellness</p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 border border-emerald-200 mb-6">
+           <Sparkles className="w-4 h-4 text-teal-600" />
+            <span className="text-sm font-medium text-emerald-700">Peacefull Support</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 text-balance leading-relaxed">
+            Bring your inner{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-emerald-700">peace</span>
+              <svg
+                className="absolute -bottom-2 left-0 w-full"
+                viewBox="0 0 200 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 15 Q 100 5, 195 15"
+                  stroke="#f97316"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+            <ArrowRight className="inline-block ml-2 w-8 h-8 text-slate-900" strokeWidth={2} />
+          </h2>
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">Real stories from students who found their path to wellness</p>
         </div>
 
-        <div className="relative">
-          <Card className="bg-white/90 backdrop-blur-sm border-emerald-100 shadow-2xl">
-            <CardContent className="p-12">
-              {/* Category and Rating */}
-              <div className="flex justify-between items-start mb-8">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white text-xl">
-                    💡
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
+          {stories.map((story, index) => (
+            <div key={index} className="flex flex-col items-center text-center group">
+              {/* Image Container */}
+              <div className="relative mb-6">
+                <div
+                  className={`${story.bgColor} ${story.shape} p-2 shadow-lg hover:shadow-xl transition-all duration-300 ${
+                    story.decorative ? "w-32 h-32 -rotate-45" : "w-32 h-32"
+                  }`}
+                >
+                  <div
+                    className={`relative w-full h-full overflow-hidden ${
+                      story.decorative ? "rounded-2xl rotate-45" : story.shape
+                    }`}
+                  >
+                    <Image
+                      src={story.image}
+                      alt={story.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                   </div>
-                  <span className="text-sm font-medium text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">
-                    {stories[currentStory].category}
-                  </span>
                 </div>
-                <div className="flex space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />
-                  ))}
-                </div>
+
+                {/* Badge decoration */}
+                {/* {story.showBadge && (
+                  <div className="absolute -top-2 -left-2 bg-white rounded-lg px-2 py-1 shadow-md border-2 border-slate-900 text-lg">
+                    {story.badge}
+                  </div>
+                )} */}
+              </div>
+
+              {/* Text Content */}
+              <h3 className="text-lg font-semibold text-slate-900 mb-1">{story.name}</h3>
+              <p className="text-sm text-slate-500 mb-3">{story.role}</p>
+              
+              {/* Star Rating */}
+              <div className="flex space-x-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3 h-3 fill-emerald-400 text-slate-400" />
+                ))}
               </div>
 
               {/* Quote */}
-              <div className="text-center mb-8">
-                <span className="text-6xl text-slate-400 font-serif leading-none">"</span>
-                <blockquote className="text-xl md:text-2xl text-slate-700 font-light leading-relaxed text-balance my-4">
-                  {stories[currentStory].quote}
-                </blockquote>
-                <span className="text-6xl text-slate-400 font-serif leading-none">"</span>
-              </div>
-
-              {/* Author */}
-              <div className="text-center">
-                <p className="text-lg font-semibold text-emerald-800">{stories[currentStory].name}</p>
-                <p className="text-emerald-600">{stories[currentStory].role}</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="flex justify-center items-center mt-8 space-x-4">
-            <button
-              onClick={prevStory}
-              className="flex items-center space-x-2 px-4 py-2 text-emerald-600 hover:text-emerald-800 transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-              <span>Previous</span>
-            </button>
-
-            <div className="flex space-x-3">
-              <button className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                💡
-              </button>
-              <button className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-200 transition-colors">
-                <Heart className="w-5 h-5" />
-              </button>
-              <button className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-200 transition-colors">
-                <Star className="w-5 h-5" />
-              </button>
-              <button className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-200 transition-colors">
-                <BookOpen className="w-5 h-5" />
-              </button>
-              <button className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 hover:bg-emerald-200 transition-colors">
-                <Link className="w-5 h-5" />
-              </button>
+              <p className="text-sm text-slate-600 leading-relaxed max-w-[240px] italic">
+                "{story.quote}"
+              </p>
             </div>
-
-            <button
-              onClick={nextStory}
-              className="flex items-center space-x-2 px-4 py-2 text-emerald-600 hover:text-emerald-800 transition-colors"
-            >
-              <span>Next</span>
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Story Indicators */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {stories.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentStory(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStory ? "bg-emerald-500 scale-125" : "bg-emerald-200 hover:bg-emerald-300"
-                }`}
-              />
-            ))}
-          </div>
+          ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-lg text-emerald-600 italic">
+        {/* Inspirational Message */}
+        <div className="text-center mb-12">
+          <p className="text-lg italic text-emerald-700">
             Every story shared here is a beacon of hope, lighting the way for others who seek healing and peace.
           </p>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-white rounded-3xl shadow-xl shadow-slate-500/5 border border-slate-100">
+            <p className="text-slate-600">
+              <span className="font-bold text-emerald-900">2,000+ students</span> have found their peace
+            </p>
+            <div className="h-4 w-px bg-slate-200 hidden sm:block" />
+            <button className="text-slate-700 font-semibold hover:text-emerald-700 transition-colors flex items-center gap-2 group">
+              Share your story
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

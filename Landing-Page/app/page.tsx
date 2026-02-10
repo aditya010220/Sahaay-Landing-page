@@ -5,7 +5,6 @@ import { VisionSection } from "@/components/vision-section"
 import { FeaturesSection } from "@/components/features-section"
 import { StoriesSection } from "@/components/stories-section"
 import { HowItWorksSection } from "@/components/how-it-works-section"
-import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
 
 export default function HomePage() {
@@ -19,7 +18,6 @@ export default function HomePage() {
         <FeaturesSection />
         <StoriesSection />
         <HowItWorksSection />
-        <CTASection />
       </main>
       <Footer />
     </div>

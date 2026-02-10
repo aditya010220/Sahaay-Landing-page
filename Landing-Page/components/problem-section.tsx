@@ -1,126 +1,154 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { Heart, Shield, Sparkles, Quote } from "lucide-react"
+
 export function ProblemSection() {
   const problems = [
     {
-      icon: "⚠️",
-      title: "Rising Mental Health Concerns",
-      description: "Student stress and anxiety levels continue to climb across campuses worldwide.",
+      title: "Academic Pressure",
+      emotion: "Stressed",
+      image: "https://i.pinimg.com/1200x/73/24/a1/7324a1eb27870a4632f85ee0e5812c31.jpg",
+      color: "bg-amber-100",
     },
     {
-      icon: "👤",
-      title: "Underutilized Counselling Services",
-      description: "Many students avoid seeking help due to stigma and accessibility barriers.",
+      title: "Social Isolation",
+      emotion: "Lonely",
+      image: "https://i.pinimg.com/1200x/cc/b4/2b/ccb42b58db10b5221cad4142fbe4e0a3.jpg",
+      color: "bg-rose-100",
     },
     {
-      icon: "🕐",
-      title: "Lack of Centralized Support",
-      description: "Fragmented resources make it difficult for students to find the right help when needed.",
+      title: "Anxiety",
+      emotion: "Worried",
+      image: "https://i.pinimg.com/736x/6b/27/4a/6b274af221ed1a07a44a85e489ddb0ab.jpg",
+      color: "bg-purple-100",
     },
+    {
+      title: "Depression",
+      emotion: "Heavy",
+      image: "https://i.pinimg.com/736x/e0/c3/4d/e0c34d605cc96f34fbb21cb997e027cb.jpg",
+      color: "bg-blue-100",
+    },
+    // {
+    //   title: "Sleep Issues",
+    //   emotion: "Exhausted",
+    //   image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=300&fit=crop",
+    //   color: "bg-indigo-100",
+    // },
+    // {
+    //   title: "Finding Hope",
+    //   emotion: "Positive",
+    //   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+    //   color: "bg-emerald-100",
+    // },
   ]
 
   return (
-    <section id="problem" className="py-20 bg-gradient-to-b from-slate-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-slate-800 mb-6 text-balance">
-            The Silent Struggle in Campuses
-          </h2>
-          <div className="w-24 h-1 bg-emerald-400 mx-auto"></div>
-        </div>
+    <section id="problem" className="relative py-20 px-6 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      {/* Soft organic shapes */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-amber-100 rounded-full opacity-20 blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose-100 rounded-full opacity-20 blur-3xl" />
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left: Problem Cards */}
-          <div className="space-y-6">
-            {problems.map((problem, index) => (
-              <div
-                key={index}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-emerald-100 animate-fade-in-up hover:shadow-xl transition-all duration-300"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">{problem.icon}</span>
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left: Photo Grid */}
+          <div className="relative">
+            {/* Main grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {problems.map((problem, idx) => (
+                <div
+                  key={idx}
+                  className={`relative ${problem.color} rounded-3xl p-4 border-2 border-white shadow-lg hover:scale-105 transition-transform duration-300`}
+                  style={{
+                    transform: idx % 2 === 0 ? 'rotate(-2deg)' : 'rotate(2deg)',
+                  }}
+                >
+                  {/* Image */}
+                  <div className="relative h-48 rounded-2xl overflow-hidden mb-3">
+                    <img
+                      src={problem.image}
+                      alt={problem.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-emerald-700 mb-2">{problem.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{problem.description}</p>
+
+                  {/* Emotion badge */}
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white px-4 py-1.5 rounded-full shadow-md border-2 border-slate-200">
+                    <span className="text-sm font-bold text-slate-800">
+                      {problem.emotion}
+                    </span>
                   </div>
+
+                  {/* Decorative elements */}
+                  {idx === 0 && (
+                    <div className="absolute -top-3 -right-3 text-2xl">⭐</div>
+                  )}
+                  {idx === 2 && (
+                    <div className="absolute -bottom-3 -left-3 text-2xl">💜</div>
+                  )}
+                  {idx === 5 && (
+                    <div className="absolute -top-3 -right-3 text-2xl">✨</div>
+                  )}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Floating accent element */}
+            <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-rose-200 rounded-full opacity-50 blur-2xl" />
           </div>
 
-          {/* Right: Stressed Student Illustration */}
-          <div className="relative">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-emerald-100">
-              <div className="relative bg-gradient-to-br from-orange-100 to-red-100 rounded-xl p-12 text-center overflow-hidden min-h-[400px] flex items-center justify-center">
-                {/* Floating stress elements */}
-                <div className="absolute top-6 left-6 animate-float opacity-80">
-                  <div className="bg-white/90 rounded-lg p-2 shadow-md transform rotate-12">
-                    <div className="text-xs text-slate-600 font-mono">DEADLINE</div>
-                    <div className="text-xs text-red-500 font-bold">TOMORROW</div>
-                  </div>
-                </div>
+          {/* Right: Human-centered Content */}
+          <div className="space-y-8">
+            {/* Warm badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 text-amber-900 rounded-full text-sm font-medium">
+              <Heart className="w-4 h-4 fill-current" />
+              You are not alone in this
+            </div>
 
-                <div className="absolute top-4 right-8 animate-float opacity-80" style={{ animationDelay: "0.5s" }}>
-                  <div className="bg-white/90 rounded-full p-3 shadow-md">
-                    <div className="text-red-500 text-lg">⏰</div>
-                  </div>
-                </div>
+            {/* Headline */}
+            <h2 className="text-4xl md:text-5xl font-serif text-slate-900 leading-tight">
+              A safe space to heal and grow
+            </h2>
 
-                <div className="absolute bottom-8 left-4 animate-float opacity-80" style={{ animationDelay: "1s" }}>
-                  <div className="bg-white/90 rounded-lg p-2 shadow-md transform -rotate-6">
-                    <div className="text-xs text-slate-600">📚 EXAM</div>
-                  </div>
-                </div>
+            {/* Story paragraph */}
+            <div className="space-y-4 text-lg text-slate-600 leading-relaxed">
+              <p>
+                Every day, thousands of students quietly carry the weight of stress, anxiety, and uncertainty. We've been there too. That's why we created a space where you don't have to pretend everything is okay.
+              </p>
+              <p>
+                Whether it's 2 AM panic before an exam, or that heavy feeling you can't quite name — we're here to listen, not judge.
+              </p>
+            </div>
 
-                <div className="absolute top-16 right-4 animate-float opacity-80" style={{ animationDelay: "1.5s" }}>
-                  <div className="bg-white/90 rounded-lg p-2 shadow-md transform rotate-6">
-                    <div className="text-xs text-slate-600">📄 ESSAY</div>
-                  </div>
-                </div>
+            {/* Quote */}
+            <div className="relative bg-slate-50 rounded-2xl p-6 border-l-4 border-rose-400">
+              <Quote className="absolute top-4 right-4 w-8 h-8 text-rose-200" />
+              <p className="text-lg italic text-slate-700 mb-2">
+                "For the first time, I felt like someone actually understood what I was going through."
+              </p>
+              <p className="text-sm text-slate-500 font-medium">
+                — A student who found support
+              </p>
+            </div>
 
-                <div className="absolute bottom-6 right-12 animate-float opacity-80" style={{ animationDelay: "2s" }}>
-                  <div className="bg-white/90 rounded-full p-2 shadow-md">
-                    <div className="text-orange-500 text-sm">💼</div>
-                  </div>
-                </div>
-
-                <div className="absolute top-12 left-16 animate-float opacity-80" style={{ animationDelay: "2.5s" }}>
-                  <div className="bg-white/90 rounded-lg p-1 shadow-md transform -rotate-12">
-                    <div className="text-xs text-red-500">❌ FAILED</div>
-                  </div>
-                </div>
-
-                {/* Central stressed student */}
-                <div className="relative z-10 text-center">
-                  <img
-                    src="/stressed-college-student-sitting-with-head-in-hand.jpg"
-                    alt="Stressed student overwhelmed by academic pressure"
-                    className="w-48 h-48 mx-auto mb-4 rounded-lg shadow-lg"
-                  />
-                  <p className="text-slate-700 text-lg max-w-sm mx-auto font-medium">
-                    Students overwhelmed by academic pressure and lacking proper support channels
-                  </p>
-                </div>
-
-                {/* Stress wave effects */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(3)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-red-300/30 rounded-full animate-ping"
-                      style={{
-                        width: `${120 + i * 60}px`,
-                        height: `${120 + i * 60}px`,
-                        animationDelay: `${i * 0.5}s`,
-                        animationDuration: "3s",
-                      }}
-                    />
-                  ))}
-                </div>
+            {/* Trust signals */}
+            <div className="flex flex-wrap gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md border border-slate-200">
+                <Shield className="w-5 h-5 text-emerald-600" />
+                <span className="font-semibold text-slate-800 text-sm">
+                  Completely Anonymous
+                </span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md border border-slate-200">
+                <Sparkles className="w-5 h-5 text-amber-600" />
+                <span className="font-semibold text-slate-800 text-sm">
+                  2,000+ Students Helped
+                </span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
